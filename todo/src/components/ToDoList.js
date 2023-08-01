@@ -1,8 +1,7 @@
 import React from "react";
 import ToDoItem from "./ToDoItem";
 
-
-function ToDoList({ todos, children }) {
+function ToDoList({ todos }) {
   return (
     <>
       <ul className="todo-list">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 import ToDoContainer from "components/ToDoContainer";
 import TodoInsert from "components/ToDoInsert";
@@ -24,10 +24,23 @@ function App() {
     },
   ]);
 
+  const nextId = useRef(4); 
+  const onInsert = (text) => {
+    const todo = {
+      id: nextId.current,
+
+      text,
+      completed: false,
+    };
+    setTodos((todos) => todos.concat(todo));
+    nextId.current++;
+    console.log("onInsert : ", text);
+  };
+
   return (
     <>
       <ToDoContainer>
-        <TodoInsert />
+        <TodoInsert onInsert={onInsert} />
         <ToDoList todos={todos}>
           <ToDoItem />
         </ToDoList>

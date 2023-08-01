@@ -1,18 +1,25 @@
-function TodoInsert() {
-  const onsubmit = (e) => {
-    e.preventDefault();
-  };
+import React, { useState } from "react";
+
+function TodoInsert({ onInsert }) {
+  const [value, setValue] = useState("");
+
   const onChange = (e) => {
-    console.log(e.target.value);
+    setValue(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    onInsert(value);
+    setValue("");
+    e.preventDefault();
   };
 
   return (
     <div>
-      <form className="todo-insert" onSubmit={onsubmit}>
+      <form className="todo-insert" onSubmit={onSubmit}>
         <input
           onChange={onChange}
-          type="text"
-          placeholder="할 일을 입력하세요"
+          value={value}
+          placeholder="할 일을 입력하세요."
         />
         <button type="submit">등록</button>
       </form>
