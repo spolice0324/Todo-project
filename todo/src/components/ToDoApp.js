@@ -1,3 +1,6 @@
+import ToDoFooter from "./ToDoFooter";
+import ToDoMain from "./ToDoMain";
+
 function ToDoApp() {
   return (
     <section className="todo-app bg-#fff my-40 mx-130 relative text-base leading-5 text-gray-700 min-w-min max-w-lg mx-auto p-4">
@@ -6,11 +9,13 @@ function ToDoApp() {
           todos
         </h1>
         <input
-          className="new-todo w-full relative pl-[60px] py-[16px] border-none bg-black bg-opacity-0 shadow-xl italic text-2xl text-thin text-gray-200"
+          className="new-todo w-full relative pl-[60px] py-[16px] border-none bg-black bg-opacity-0 shadow-xl italic text-2xl font-thin text-gray-200"
           placeholder="What needs to be done?"
           autoFocus
         />
       </header>
+      <ToDoMain />
+      <ToDoFooter />
     </section>
   );
 }

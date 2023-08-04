@@ -1,22 +1,27 @@
-function ToDoFooter() {
+import { NavLink } from "react-router-dom";
+
+export default function ToDoFooter() {
   return (
     <>
       <footer className="footer">
         <span className="todo-count">
-          <strong>0</strong>
-          <span>item left </span>
+          <strong>0</strong> items left
         </span>
         <ul className="filters">
           <li>
-            <a href="#all" className="selected">
+            <NavLink exact={true} to="/" activeClassName="selected">
               All
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#active">Active</a>
+            <NavLink to="/active" activeClassName="selected">
+              Active
+            </NavLink>
           </li>
           <li>
-            <a href="#completed">Completed</a>
+            <NavLink to="/completed" activeClassName="selected">
+              Completed
+            </NavLink>
           </li>
         </ul>
         <button className="clear-completed">Clear completed</button>
@@ -24,5 +29,3 @@ function ToDoFooter() {
     </>
   );
 }
-
-export default ToDoFooter;

@@ -1,17 +1,17 @@
+import { HashRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import ToDoApp from "components/ToDoApp";
-import ToDoMain from "components/ToDoMain";
-import ToDoFooter from "components/ToDoFooter";
 
 function App() {
   return (
-    <>
-      <ToDoApp>
-        <ToDoMain />
-        <ToDoFooter />
-      </ToDoApp>
-    </>
+    <HashRouter>
+      <>
+        <Routes>
+          <Route path="/:filter?" Component={ToDoApp} />
+        </Routes>
+      </>
+    </HashRouter>
   );
 }
 
