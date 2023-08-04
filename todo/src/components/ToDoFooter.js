@@ -1,17 +1,18 @@
 import { NavLink } from "react-router-dom";
 
 export default function ToDoFooter() {
-  const unSelectedStyle = " inline-block pl-3 rounded-sm ";
-  const selectedStyle = "   rounded-sm border border-solid border-red-200 p-1 ";
+  const liStyle =
+    "inline-block mx-4  text-gray-500 font-thin rounded-sm border border-transparent hover:border-gray-200 ";
+  const selectedStyle = "border border-red-200 rounded-sm";
 
   return (
     <>
-      <footer className="footer block footer py-[10px]  h-[20px] text-center border-t border-gray-300 font-thin">
-        <span className="todo-count abosolute float-left text-left text-gray-500 font-thin">
-          <strong className="todo-num  font-thin">0</strong> items left
+      <footer className="footer block p-2 text-center border-t border-solid font-thin">
+        <span className="todo-count relative mx-3 float-left text-left text-gray-500 font-thin">
+          <strong className="todo-num font-thin">0</strong> items left
         </span>
-        <ul className="filters inline-block right-0 left-0 font-thin p-0.5">
-          <li className={unSelectedStyle}>
+        <ul className="filters inline-block right-0 left-0  font-thin  ">
+          <li className={liStyle}>
             <NavLink
               exact={"true"}
               to="/"
@@ -20,7 +21,7 @@ export default function ToDoFooter() {
               All
             </NavLink>
           </li>
-          <li className={unSelectedStyle}>
+          <li className={liStyle}>
             <NavLink
               to="/active"
               className={({ isActive }) => (isActive ? selectedStyle : "")}
@@ -28,17 +29,16 @@ export default function ToDoFooter() {
               Active
             </NavLink>
           </li>
-          <li className={unSelectedStyle}>
+          <li className={liStyle}>
             <NavLink
-              to="/completed
-            "
+              to="/completed"
               className={({ isActive }) => (isActive ? selectedStyle : "")}
             >
               Completed
             </NavLink>
           </li>
         </ul>
-        <button className="clear-complete relative cursor-pointer float-right ">
+        <button className="clear-complete mx-2 cursor-pointer float-right ">
           Clear completed
         </button>
       </footer>

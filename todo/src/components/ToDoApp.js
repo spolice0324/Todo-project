@@ -4,7 +4,7 @@ import ToDoHeader from "./ToDoHeader";
 
 function ToDoApp() {
   return (
-    <section className="todo-app bg-#fff my-40 mx-130 relative text-base leading-5 text-gray-700 min-w-min max-w-lg mx-auto p-4">
+    <section className="todo-app relative my-[130px] mx-[40px] bg-white text-base leading-5 min-w-[230px] max-w-[550px] shadow-md border-solid border  ">
       <ToDoHeader />
       <ToDoMain />
       <ToDoFooter />
