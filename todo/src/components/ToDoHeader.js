@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
-export default function ToDoHeader({ todos, setTodos, onInsert }) {
+export default function ToDoHeader({ onInsert }) {
   const [value, setValue] = useState("");
 
   const onChange = (e) => {
@@ -22,7 +22,7 @@ export default function ToDoHeader({ todos, setTodos, onInsert }) {
         <input
           onChange={onChange}
           value={value}
-          className="new-todo w-full relative pl-[60px] py-[16px] border-solid shadow-md inset-y-1 bg-opacity-5 italic text-2xl font-thin text-gray-500"
+          className="new-todo w-full relative pl-[55px] py-[16px] border-none  inset-y-1 bg-opacity-5 italic text-2xl font-thin text-gray-500 outline-none"
           placeholder="What needs to be done?"
           autoFocus
         />

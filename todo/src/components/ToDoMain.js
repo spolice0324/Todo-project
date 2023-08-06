@@ -1,12 +1,10 @@
 import ToDoList from "./ToDo/ToDoList";
 
-export default function ToDoMain({ todos }) {
+export default function ToDoMain({ todos, onDestroy }) {
   return (
     <>
-      <section className="main relative z-2 border-solid ">
-        <input id="toggle-all" type="checkbox" className="toggle-all" />
-        <label htmlFor="toggle-all" />
-        <ToDoList todos={todos} />
+      <section className="main relative z-2 ">
+        <ToDoList todos={todos} onDestroy={onDestroy} />
       </section>
     </>
   );
