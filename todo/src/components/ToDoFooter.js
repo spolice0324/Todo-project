@@ -1,12 +1,21 @@
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function ToDoFooter({ todos, onClearCompleted }) {
-  const activeTodoCount = todos.filter((todo) => !todo.completed).length;
+export default function ToDoFooter({
+  todos,
+  onClearCompleted,
+  selected,
+  setSelected,
+  filteredTodos,
+}) {
+  const activeTodoCount =filteredTodos.filter((todo) => !todo.completed).length;
   const itemWord = activeTodoCount === 1 ? "item" : "items";
 
   const liStyle =
-    "inline-block mx-4  text-gray-500 font-thin rounded-sm border border-transparent hover:border-gray-200 ";
-  const selectedStyle = "border border-red-200 rounded-sm";
+    "inline-block mx-4  text-gray-500 font-thin rounded-sm border hover:border-gray-200 ";
+  const selectedStyle = "border-red-200";
+
+  
 
   return (
     <>
@@ -16,30 +25,32 @@ export default function ToDoFooter({ todos, onClearCompleted }) {
           {itemWord} left
         </span>
         <ul className="filters inline-block right-0 left-0  font-thin  ">
-          <li className={liStyle}>
-            <NavLink
-              exact={"true"}
-              to="/"
-              className={({ isActive }) => (isActive ? selectedStyle : "")}
-            >
+          <li
+            className={`${liStyle} ${
+              selected === "all" ? selectedStyle : "border-transparent"
+            }`}
+          >
+            <Link to="/#/" onClick={() => setSelected("all")}>
               All
-            </NavLink>
+            </Link>
           </li>
-          <li className={liStyle}>
-            <NavLink
-              to="/active"
-              className={({ isActive }) => (isActive ? selectedStyle : "")}
-            >
+          <li
+            className={`${liStyle} ${
+              selected === "active" ? selectedStyle : "border-transparent"
+            }`}
+          >
+            <Link to="/#/active" onClick={() => setSelected("active")}>
               Active
-            </NavLink>
+            </Link>
           </li>
-          <li className={liStyle}>
-            <NavLink
-              to="/completed"
-              className={({ isActive }) => (isActive ? selectedStyle : "")}
-            >
+          <li
+            className={`${liStyle} ${
+              selected === "completed" ? selectedStyle : "border-transparent"
+            }`}
+          >
+            <Link to="/#/completed" onClick={() => setSelected("completed")}>
               Completed
-            </NavLink>
+            </Link>
           </li>
         </ul>
         <button
