@@ -42,7 +42,7 @@ function ToDoApp() {
   const onClearCompleted = () => {
     setTodos(todos.filter((todo) => !todo.completed));
   };
-  const hasTodos = filteredTodos.length > 0;
+  const hasTodos = todos.length > 0;
 
   return (
     <section className="todo-app relative m-auto my-[130px] mx-[40px] bg-white text-base leading-5 min-w-[230px] max-w-[550px] shadow-md border-solid border  ">
