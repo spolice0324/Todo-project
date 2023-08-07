@@ -1,6 +1,6 @@
 import ToDoItem from "./ToDoItem";
 
-export default function ToDoList({ todos, onDestroy, filteredTodos }) {
+export default function ToDoList({ todos, onDestroy, filteredTodos, setTodos }) {
   return (
     <ul className="todo-list">
       {filteredTodos.map((todo) => (
@@ -9,7 +9,8 @@ export default function ToDoList({ todos, onDestroy, filteredTodos }) {
           todo={todo}
           onDestroy={onDestroy}
           todos={todos}
-          
+          setTodos={setTodos}
+
           
         />
       ))}

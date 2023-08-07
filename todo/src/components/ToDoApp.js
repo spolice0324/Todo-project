@@ -49,6 +49,7 @@ function ToDoApp() {
       <ToDoHeader todos={todos} onInsert={onInsert} />
       <ToDoMain
         todos={todos}
+        setTodos={setTodos}
         filteredTodos={filteredTodos}
         onDestroy={onDestroy}
         selected={selected}
@@ -58,6 +59,7 @@ function ToDoApp() {
         <>
           <ToDoFooter
             todos={todos}
+            setTodos={setTodos}
             selected={selected}
             setSelected={setSelected}
             onClearCompleted={onClearCompleted}

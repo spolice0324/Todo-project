@@ -1,5 +1,14 @@
-export default function ToDoItem({ todo, onDestroy }) {
+import React, { useState } from "react";
+
+export default function ToDoItem({ todo, onDestroy, todos, setTodos }) {
   const { id, text, completed } = todo;
+
+  const onChangeCheckbox = () => {
+    const nextTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
+    setTodos(nextTodos);
+  };
 
   return (
     <>
@@ -8,7 +17,8 @@ export default function ToDoItem({ todo, onDestroy }) {
           <input
             type="checkbox"
             className="toggle mr-5"
-            defaultChecked={completed}
+            checked={completed}
+            onChange={onChangeCheckbox}
           ></input>
           <label>{text}</label>
           <button
