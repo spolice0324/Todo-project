@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 
 export default function ToDoHeader({ onInsert }) {
   const [value, setValue] = useState("");

@@ -1,49 +1,62 @@
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function ToDoFooter({ todos, onClearCompleted }) {
-  const activeTodoCount = todos.filter((todo) => !todo.completed).length;
+export default function ToDoFooter({
+  todos,
+  onClearCompleted,
+  selected,
+  setSelected,
+  filteredTodos,
+}) {
+  const activeTodoCount = filteredTodos.filter(
+    (todo) => !todo.completed
+  ).length;
   const itemWord = activeTodoCount === 1 ? "item" : "items";
 
   const liStyle =
-    "inline-block mx-4  text-gray-500 font-thin rounded-sm border border-transparent hover:border-gray-200 ";
-  const selectedStyle = "border border-red-200 rounded-sm";
+    "inline-block mx-2 ml-1 text-gray-500 font-thin rounded-sm border hover:border-gray-200 ";
+  const selectedStyle = "border-red-200";
 
   return (
     <>
-      <footer className="footer block p-2 text-center border-t border-solid font-thin">
-        <span className="todo-count relative mx-3 float-left text-left text-gray-500 font-thin">
-          <strong className="todo-num font-thin">{activeTodoCount}</strong>{" "}
+      <footer className="footer block p-3 text-center border-t border-solid font-thin">
+        <span className="todo-count relative  float-left text-left text-gray-500 font-thin">
+          <strong className="todo-num px-1 font-thin">{activeTodoCount}</strong>{" "}
           {itemWord} left
         </span>
-        <ul className="filters inline-block right-0 left-0  font-thin  ">
-          <li className={liStyle}>
-            <NavLink
-              exact={"true"}
-              to="/"
-              className={({ isActive }) => (isActive ? selectedStyle : "")}
-            >
+        <ul className="filters  px-1 inline-block right-0 left-0  font-thin  ">
+          <li
+            className={`${liStyle} ${
+              selected === "all" ? selectedStyle : "border-transparent"
+            }`}
+          >
+            <Link to="/#/" onClick={() => setSelected("all")}>
               All
-            </NavLink>
+            </Link>
           </li>
-          <li className={liStyle}>
-            <NavLink
-              to="/active"
-              className={({ isActive }) => (isActive ? selectedStyle : "")}
-            >
+          <li
+            className={`${liStyle} ${
+              selected === "active" ? selectedStyle : "border-transparent"
+            }`}
+          >
+            <Link to="/#/active" onClick={() => setSelected("active")}>
               Active
-            </NavLink>
+            </Link>
           </li>
-          <li className={liStyle}>
-            <NavLink
-              to="/completed"
-              className={({ isActive }) => (isActive ? selectedStyle : "")}
-            >
+          <li
+            className={`${liStyle} ${
+              selected === "completed" ? selectedStyle : "border-transparent"
+            }`}
+          >
+            <Link to="/#/completed" onClick={() => setSelected("completed")}>
               Completed
-            </NavLink>
+            </Link>
           </li>
         </ul>
         <button
-          className="clear-complete mx-2 cursor-pointer float-right  text-gray-500"
+          className={`clear-complete absolute cursor-pointer float-right ml-2 my-0.5 text-gray-500 ${
+            filteredTodos.some((todo) => todo.completed) ? "" : "hidden"
+          }`}
           onClick={onClearCompleted}
         >
           Clear completed
