@@ -32,3 +32,33 @@ code {
 .todo-item:hover .destroy {
   display: block;
 }
+
+.edit {
+  border: none;
+  color: inherit;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.9);
+  outline: none;
+}
+
+.toggle {
+  appearance: none;
+  border: 1px solid #a0aec0;
+  border-radius: 50%;
+  top: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle:checked::before {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: rgb(42, 204, 42);
+}
