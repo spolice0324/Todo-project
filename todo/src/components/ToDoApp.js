@@ -45,7 +45,7 @@ function ToDoApp() {
   const hasTodos = todos.length > 0;
 
   return (
-    <section className="todo-app relative m-auto my-[130px] mx-[40px] bg-white text-base leading-5 min-w-[230px] max-w-[550px] shadow-md border-solid border  ">
+    <section className="todo-app relative m-auto my-[200px] mx-[100px] bg-white text-base leading-5 min-w-[230px] max-w-[550px] shadow-md border-solid border  ">
       <ToDoHeader todos={todos} onInsert={onInsert} />
       <ToDoMain
         todos={todos}

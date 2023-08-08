@@ -19,7 +19,7 @@ export default function ToDoFooter({
 
   return (
     <>
-      <footer className="footer block p-3 text-center border-t border-solid font-thin">
+      <footer className="footer block p-3 text-center border-t border-solid font-thin shadow-lg">
         <span className="todo-count relative  float-left text-left text-gray-500 font-thin">
           <strong className="todo-num px-1 font-thin">{activeTodoCount}</strong>{" "}
           {itemWord} left
