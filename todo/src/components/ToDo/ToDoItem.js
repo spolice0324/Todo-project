@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-
-export default function ToDoItem({ todo, onDestroy, todos, setTodos }) {
+export default function ToDoItem({
+  todo,
+  onDestroy,
+  todos,
+  setTodos,
+  isChecked,
+}) {
   const { id, text, completed } = todo;
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
@@ -37,17 +42,21 @@ export default function ToDoItem({ todo, onDestroy, todos, setTodos }) {
 
   return (
     <>
-      <li className="todo-item relative p-[15px] block border border-gray-100 font-thin text-2xl">
+      <li
+        className={`todo-item relative p-[15px] block border border-gray-100 font-thin text-2xl ${
+          isChecked ? "completed" : ""
+        } ${isEditing ? "editing" : ""}`}
+      >
         <div className="view">
           <input
             type="checkbox"
-            className="toggle cursor-pointer  "
-            checked={completed}
+            className="toggle cursor-pointer"
+            checked={isChecked}
             onChange={onChangeCheckbox}
           ></input>
           {isEditing ? (
             <input
-              className="edit"
+              className="edit pl-3"
               type="text"
               value={editedText}
               placeholder="Edit the Text "
