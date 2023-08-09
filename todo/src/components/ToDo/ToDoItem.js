@@ -1,6 +1,11 @@
-import React, { useState } from "react";
-
-export default function ToDoItem({ todo, onDestroy, todos, setTodos }) {
+import React, { useEffect, useState } from "react";
+export default function ToDoItem({
+  todo,
+  onDestroy,
+  todos,
+  setTodos,
+  isChecked,
+}) {
   const { id, text, completed } = todo;
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
@@ -11,6 +16,10 @@ export default function ToDoItem({ todo, onDestroy, todos, setTodos }) {
     );
     setTodos(nextTodos);
   };
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const onDoubleClick = () => {
     setIsEditing(true);
@@ -25,8 +34,10 @@ export default function ToDoItem({ todo, onDestroy, todos, setTodos }) {
             todo.id === id ? { ...todo, text: trimmedText } : todo
           )
         );
+        localStorage.setItem("todos", JSON.stringify(todos));
       } else {
         onDestroy(id);
+        localStorage.setItem("todos", JSON.stringify(todos));
       }
       setIsEditing(false);
     } else if (e.key === "Escape") {
@@ -37,17 +48,21 @@ export default function ToDoItem({ todo, onDestroy, todos, setTodos }) {
 
   return (
     <>
-      <li className="todo-item relative p-[15px] block border border-gray-100 font-thin text-2xl">
+      <li
+        className={`todo-item relative p-[15px] block border border-gray-100 font-thin text-2xl ${
+          isChecked ? "completed" : ""
+        } ${isEditing ? "editing" : ""}`}
+      >
         <div className="view">
           <input
             type="checkbox"
-            className="toggle cursor-pointer  "
-            checked={completed}
+            className="toggle cursor-pointer"
+            checked={isChecked}
             onChange={onChangeCheckbox}
           ></input>
           {isEditing ? (
             <input
-              className="edit"
+              className="edit pl-3"
               type="text"
               value={editedText}
               placeholder="Edit the Text "
@@ -68,7 +83,13 @@ export default function ToDoItem({ todo, onDestroy, todos, setTodos }) {
           )}
           <button
             className="destroy float-right pr-2 text-red-600 hover:block hidden hover:text-red-800  hover: transition-all duration-300 ease-in-out"
-            onClick={() => onDestroy(id)}
+            onClick={() => {
+              onDestroy(id);
+              localStorage.setItem(
+                "todos",
+                JSON.stringify(todos.filter((todo) => todo.id !== id))
+              );
+            }}
           >
             x
           </button>
