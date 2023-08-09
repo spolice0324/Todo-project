@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 export default function ToDoItem({
   todo,
   onDestroy,
@@ -14,11 +14,13 @@ export default function ToDoItem({
     const nextTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
-    setTodos(nextTodos, () => {
-      localStorage.setItem("todos", JSON.stringify(nextTodos));
-    });
+    setTodos(nextTodos);
   };
-  
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
   const onDoubleClick = () => {
     setIsEditing(true);
   };
