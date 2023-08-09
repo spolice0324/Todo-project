@@ -4,12 +4,14 @@ export default function ToDoHeader({ onInsert }) {
   const [value, setValue] = useState("");
 
   const onChange = (e) => {
-    setValue(e.target.value);
+    const newValue = e.target.value;
+    setValue(newValue);
   };
 
   const onSubmit = (e) => {
     onInsert(value);
     setValue("");
+
     e.preventDefault();
   };
 

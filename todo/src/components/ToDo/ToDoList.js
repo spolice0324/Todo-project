@@ -15,8 +15,11 @@ export default function ToDoList({
       ...todo,
       completed: !isAllChecked,
     }));
-    setTodos(nextTodos);
+    setTodos(nextTodos, () => {
+      localStorage.setItem("todos", JSON.stringify(nextTodos));
+    });
   };
+  
 
   return (
     <section>
@@ -28,7 +31,10 @@ export default function ToDoList({
         onChange={handleToggleAll}
         onClick={() => setIsAllChecked(!isAllChecked)}
       />
-      <label htmlFor="toggle-all" className="toggle-all absolute w-[60px] h-[34px] -top-[52px] -left-[13px] rotate-90 text-transparent">
+      <label
+        htmlFor="toggle-all"
+        className="toggle-all absolute w-[60px] h-[34px] -top-[52px] -left-[13px] rotate-90 text-transparent"
+      >
         {isAllChecked}
       </label>
 

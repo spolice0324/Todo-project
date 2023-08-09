@@ -14,9 +14,11 @@ export default function ToDoItem({
     const nextTodos = todos.map((todo) =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
-    setTodos(nextTodos);
+    setTodos(nextTodos, () => {
+      localStorage.setItem("todos", JSON.stringify(nextTodos));
+    });
   };
-
+  
   const onDoubleClick = () => {
     setIsEditing(true);
   };
@@ -30,8 +32,10 @@ export default function ToDoItem({
             todo.id === id ? { ...todo, text: trimmedText } : todo
           )
         );
+        localStorage.setItem("todos", JSON.stringify(todos));
       } else {
         onDestroy(id);
+        localStorage.setItem("todos", JSON.stringify(todos));
       }
       setIsEditing(false);
     } else if (e.key === "Escape") {
@@ -77,7 +81,13 @@ export default function ToDoItem({
           )}
           <button
             className="destroy float-right pr-2 text-red-600 hover:block hidden hover:text-red-800  hover: transition-all duration-300 ease-in-out"
-            onClick={() => onDestroy(id)}
+            onClick={() => {
+              onDestroy(id);
+              localStorage.setItem(
+                "todos",
+                JSON.stringify(todos.filter((todo) => todo.id !== id))
+              );
+            }}
           >
             x
           </button>
