@@ -1,23 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import ToDoMain from "./ToDoMain";
 import ToDoFooter from "./ToDoFooter";
+import { useLocation } from "react-router-dom";
 import ToDoHeader from "./ToDoHeader";
 
 function ToDoApp() {
-  const newTodo = useRef(0);
-  const [selected, setSelected] = useState("all");
+  const selected = useLocation().pathname?.split("/")[1] || "all";
 
-  useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem("todos"));
-    if (storedTodos) {
-      setTodos(storedTodos);
-      newTodo.current = storedTodos.length;
-    }
-  }, []);
   const [todos, setTodos] = useState(() => {
     const storedTodos = JSON.parse(localStorage.getItem("todos"));
     if (storedTodos) {
-      newTodo.current = storedTodos.length;
       return storedTodos;
     } else {
       return [];
@@ -46,13 +38,11 @@ function ToDoApp() {
   const onInsert = (text) => {
     if (text.trim() !== "") {
       const todo = {
-        id: newTodo.current,
+        id: todos.length,
         text,
         completed: false,
       };
-      const newTodos = todos.concat(todo);
-      setTodos(newTodos);
-      newTodo.current++;
+      setTodos((todos) => todos.concat(todo));
     }
   };
 
@@ -75,7 +65,6 @@ function ToDoApp() {
         filteredTodos={filteredTodos}
         onDestroy={onDestroy}
         selected={selected}
-        setSelected={setSelected}
       />
       {hasTodos && (
         <>
@@ -83,7 +72,6 @@ function ToDoApp() {
             todos={todos}
             setTodos={setTodos}
             selected={selected}
-            setSelected={setSelected}
             onClearCompleted={onClearCompleted}
             filteredTodos={filteredTodos}
           />
