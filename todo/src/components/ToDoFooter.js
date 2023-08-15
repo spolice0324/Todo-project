@@ -1,11 +1,9 @@
-
 import { Link } from "react-router-dom";
 
 export default function ToDoFooter({
   todos,
   onClearCompleted,
   selected,
-  setSelected,
   filteredTodos,
 }) {
   const activeTodoCount = filteredTodos.filter(
@@ -30,7 +28,7 @@ export default function ToDoFooter({
               selected === "all" ? selectedStyle : "border-transparent"
             }`}
           >
-            <Link to="/#/" onClick={() => setSelected("all")}>
+            <Link to="/">
               All
             </Link>
           </li>
@@ -39,7 +37,7 @@ export default function ToDoFooter({
               selected === "active" ? selectedStyle : "border-transparent"
             }`}
           >
-            <Link to="/#/active" onClick={() => setSelected("active")}>
+            <Link to="/active">
               Active
             </Link>
           </li>
@@ -48,7 +46,7 @@ export default function ToDoFooter({
               selected === "completed" ? selectedStyle : "border-transparent"
             }`}
           >
-            <Link to="/#/completed" onClick={() => setSelected("completed")}>
+            <Link to="/completed">
               Completed
             </Link>
           </li>

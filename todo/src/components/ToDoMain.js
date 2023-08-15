@@ -6,8 +6,6 @@ export default function ToDoMain({
   onDestroy,
   filteredTodos,
   selected,
-  setSelected,
-
 }) {
   return (
     <>
@@ -18,7 +16,6 @@ export default function ToDoMain({
           onDestroy={onDestroy}
           filteredTodos={filteredTodos}
           selected={selected}
-          setSelected={setSelected}
         />
       </section>
     </>

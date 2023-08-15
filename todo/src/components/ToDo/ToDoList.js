@@ -19,7 +19,6 @@ export default function ToDoList({
       localStorage.setItem("todos", JSON.stringify(nextTodos));
     });
   };
-  
 
   return (
     <section>
