@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ToDoMain from "./ToDoMain";
 import ToDoFooter from "./ToDoFooter";
-import { useLocation } from "react-router-dom";
 import ToDoHeader from "./ToDoHeader";
 
 function ToDoApp() {

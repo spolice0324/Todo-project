@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function ToDoFooter({
-  todos,
   onClearCompleted,
   selected,
   filteredTodos,
@@ -28,27 +27,27 @@ export default function ToDoFooter({
               selected === "all" ? selectedStyle : "border-transparent"
             }`}
           >
-            <Link to="/">
+            <NavLink to="/">
               All
-            </Link>
+            </NavLink>
           </li>
           <li
             className={`${liStyle} ${
               selected === "active" ? selectedStyle : "border-transparent"
             }`}
           >
-            <Link to="/active">
+            <NavLink to="/active">
               Active
-            </Link>
+            </NavLink>
           </li>
           <li
             className={`${liStyle} ${
               selected === "completed" ? selectedStyle : "border-transparent"
             }`}
           >
-            <Link to="/completed">
+            <NavLink to="/completed">
               Completed
-            </Link>
+            </NavLink>
           </li>
         </ul>
         <button
